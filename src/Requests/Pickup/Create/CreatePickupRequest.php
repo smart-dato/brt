@@ -2,10 +2,10 @@
 
 namespace SmartDato\Brt\Requests\Pickup\Create;
 
+use Saloon\Contracts\Body\HasBody;
 use Saloon\Enums\Method;
 use Saloon\Http\Request;
 use Saloon\Traits\Body\HasJsonBody;
-use Saloon\Contracts\Body\HasBody;
 
 class CreatePickupRequest extends Request implements HasBody
 {
@@ -26,7 +26,7 @@ class CreatePickupRequest extends Request implements HasBody
 
     protected function defaultBody(): array
     {
-        return array_map(fn($request) => $request->build(), $this->collectionRequests);
+        return array_map(fn ($request) => $request->build(), $this->collectionRequests);
     }
 
     /**
@@ -34,6 +34,5 @@ class CreatePickupRequest extends Request implements HasBody
      */
     public function __construct(
         protected array $collectionRequests,
-    ) {
-    }
+    ) {}
 }

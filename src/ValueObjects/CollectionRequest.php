@@ -20,8 +20,7 @@ class CollectionRequest extends Data
         protected ?string $recipientDepot = null,
 
         protected ?CustomerInfos $customerInfos = null,
-    ) {
-    }
+    ) {}
 
     public function build(): array
     {
@@ -31,9 +30,9 @@ class CollectionRequest extends Data
             'sendingDepot' => $this->sendingDepot,
             'recipientDepot' => $this->recipientDepot,
             'customerInfos' => $this->customerInfos?->build(),
-            'stakeholders' => array_map(fn($stackholder) => $stackholder->build(), $this->stakeholders),
+            'stakeholders' => array_map(fn ($stackholder) => $stackholder->build(), $this->stakeholders),
             'brtSpec' => $this->brtSpec->build(),
-        ], fn($value) => !is_null($value));
+        ], fn ($value) => ! is_null($value));
 
     }
 }

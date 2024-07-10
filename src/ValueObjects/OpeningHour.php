@@ -6,12 +6,10 @@ use SmartDato\Brt\Contracts\Data;
 
 class OpeningHour extends Data
 {
-
     public function __construct(
         protected string $from,
         protected string $to,
-    ) {
-    }
+    ) {}
 
     public function build(): array
     {
