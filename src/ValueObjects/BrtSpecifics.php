@@ -4,8 +4,8 @@ namespace SmartDato\Brt\ValueObjects;
 
 use SmartDato\Brt\Contracts\Data;
 use SmartDato\Brt\Enums\Language;
-use SmartDato\Brt\Enums\PayerType;
 use SmartDato\Brt\Enums\PayeeType;
+use SmartDato\Brt\Enums\PayerType;
 
 class BrtSpecifics extends Data
 {
