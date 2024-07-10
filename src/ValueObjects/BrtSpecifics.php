@@ -5,9 +5,7 @@ namespace SmartDato\Brt\ValueObjects;
 use SmartDato\Brt\Contracts\Data;
 use SmartDato\Brt\Enums\Language;
 use SmartDato\Brt\Enums\PayerType;
-use SmartDato\Brt\ValueObjects\Alert;
-use SmartDato\Brt\ValueObjects\Amount;
-use SmartDato\Brt\ValueObjects\OpeningHour;
+use SmartDato\Brt\Enums\PayeeType;
 
 class BrtSpecifics extends Data
 {
@@ -40,19 +38,18 @@ class BrtSpecifics extends Data
         protected ?string $parcelIDTo = null,
         protected ?bool $anticipate = null,
         protected ?string $serviceCode = null,
-    ) {
-    }
+    ) {}
 
     public function build(): array
     {
         return array_filter([
             'language' => $this->language->value,
             'network' => $this->network,
-            'alerts' => array_map(fn($alert) => $alert->build(), $this->alerts),
+            'alerts' => array_map(fn ($alert) => $alert->build(), $this->alerts),
             'commissioned' => $this->commissioned,
             'notes' => $this->notes,
             'parcelInfos' => $this->parcelInfos,
-            'openingHours' => array_map(fn($openingHour) => $openingHour->build(), $this->openingHours),
+            'openingHours' => array_map(fn ($openingHour) => $openingHour->build(), $this->openingHours),
             'goodDescription' => $this->goodDescription,
             'palletCount' => $this->palletCount,
             'payerType' => $this->payerType?->value,
@@ -70,6 +67,6 @@ class BrtSpecifics extends Data
             'parcelIDTo' => $this->parcelIDTo,
             'anticipate' => $this->anticipate,
             'serviceCode' => $this->serviceCode,
-        ], fn($value) => !is_null($value));
+        ], fn ($value) => ! is_null($value));
     }
 }

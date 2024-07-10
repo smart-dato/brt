@@ -25,55 +25,55 @@ it('can create pickup', function () {
 
     $response = $connector->send(
         new \SmartDato\Brt\Requests\Pickup\Create\CreatePickupRequest([
-                new \SmartDato\Brt\ValueObjects\CollectionRequest(
-                    requestInfos: new \SmartDato\Brt\ValueObjects\RequestInfos(
-                        collectionDate: now()->nextWeekday(),
-                        parcelCount: 1
-                    ),
-                    customerInfos: new \SmartDato\Brt\ValueObjects\CustomerInfos(
-                        custAccNumber: '0000000'
+            new \SmartDato\Brt\ValueObjects\CollectionRequest(
+                requestInfos: new \SmartDato\Brt\ValueObjects\RequestInfos(
+                    collectionDate: now()->nextWeekday(),
+                    parcelCount: 1
+                ),
+                customerInfos: new \SmartDato\Brt\ValueObjects\CustomerInfos(
+                    custAccNumber: '0000000'
 
+                ),
+                stakeholders: [
+                    new \SmartDato\Brt\ValueObjects\Stakeholder\Stakeholder(
+                        type: \SmartDato\Brt\Enums\Stakeholder\Type::Requester,
+                        customerInfos: new \SmartDato\Brt\ValueObjects\Stakeholder\Customer(
+                            custAccNumber: '0000000000'
+                        ),
                     ),
-                    stakeholders: [
-                        new \SmartDato\Brt\ValueObjects\Stakeholder\Stakeholder(
-                            type: \SmartDato\Brt\Enums\Stakeholder\Type::Requester,
-                            customerInfos: new \SmartDato\Brt\ValueObjects\Stakeholder\Customer(
-                                custAccNumber: '0000000000'
+                    new \SmartDato\Brt\ValueObjects\Stakeholder\Stakeholder(
+                        type: \SmartDato\Brt\Enums\Stakeholder\Type::Sender,
+                        customerInfos: new \SmartDato\Brt\ValueObjects\Stakeholder\Customer(
+                            custAccNumber: '0000000000'
+                        ),
+                        contact: new \SmartDato\Brt\ValueObjects\Stakeholder\Contact(
+                            contactDetails: new \SmartDato\Brt\ValueObjects\Stakeholder\ContactDetails(
+                                phone: '0000000000',
+                                contactPerson: 'Foo Bar',
                             ),
                         ),
-                        new \SmartDato\Brt\ValueObjects\Stakeholder\Stakeholder(
-                            type: \SmartDato\Brt\Enums\Stakeholder\Type::Sender,
-                            customerInfos: new \SmartDato\Brt\ValueObjects\Stakeholder\Customer(
-                                custAccNumber: '0000000000'
-                            ),
-                            contact: new \SmartDato\Brt\ValueObjects\Stakeholder\Contact(
-                                contactDetails: new \SmartDato\Brt\ValueObjects\Stakeholder\ContactDetails(
-                                    phone: '0000000000',
-                                    contactPerson: 'Foo Bar',
-                                ),
-                            ),
-                        )
-                    ],
-                    brtSpec: new \SmartDato\Brt\ValueObjects\BrtSpecifics(
-                        goodDescription: 'test',
-                        payerType: \SmartDato\Brt\Enums\PayerType::Ordering,
-                        collectionTime: '11:00',
-                        alerts: [],
-                        weightKG: 2.3,
-                        openingHours: [
-                            new \SmartDato\Brt\ValueObjects\OpeningHour(
-                                from: '10:00',
-                                to: '13:00',
-                            ),
-                            new \SmartDato\Brt\ValueObjects\OpeningHour(
-                                from: '15:00',
-                                to: '17:00',
-                            ),
-                        ],
                     ),
+                ],
+                brtSpec: new \SmartDato\Brt\ValueObjects\BrtSpecifics(
+                    goodDescription: 'test',
+                    payerType: \SmartDato\Brt\Enums\PayerType::Ordering,
+                    collectionTime: '11:00',
+                    alerts: [],
+                    weightKG: 2.3,
+                    openingHours: [
+                        new \SmartDato\Brt\ValueObjects\OpeningHour(
+                            from: '10:00',
+                            to: '13:00',
+                        ),
+                        new \SmartDato\Brt\ValueObjects\OpeningHour(
+                            from: '15:00',
+                            to: '17:00',
+                        ),
+                    ],
+                ),
 
-                )
-            ]
+            ),
+        ]
         )
     );
 
@@ -86,16 +86,16 @@ it('can create pickup', function () {
         ->toBeArray();
 
     expect($data[0])->toHaveKeys([
-        "ormReservationNumber",
-        "ormNumber",
-        "sendingDepot",
-        "recipientDepot",
-        "collectionDate",
-        "minCollectionDate",
-        "valid",
-        "parcels",
-        "serviceTime",
-        "commissioned",
-        "errors",
+        'ormReservationNumber',
+        'ormNumber',
+        'sendingDepot',
+        'recipientDepot',
+        'collectionDate',
+        'minCollectionDate',
+        'valid',
+        'parcels',
+        'serviceTime',
+        'commissioned',
+        'errors',
     ]);
 });
