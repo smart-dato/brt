@@ -1,7 +1,7 @@
 <?php
 
 it('can search pickups', function () {
-    $connector = new \SmartDato\Brt\BrtConnector();
+    $connector = new \SmartDato\Brt\BrtConnector;
     $connector->withMockClient(new \Saloon\Http\Faking\MockClient([
         \SmartDato\Brt\Requests\Pickup\Search\SearchPickupRequest::class => \Saloon\Http\Faking\MockResponse::fixture('pickups.search.sucess'),
     ]));
@@ -17,7 +17,7 @@ it('can search pickups', function () {
 });
 
 it('can create pickup', function () {
-    $connector = new \SmartDato\Brt\BrtConnector();
+    $connector = new \SmartDato\Brt\BrtConnector;
 
     $connector->withMockClient(new \Saloon\Http\Faking\MockClient([
         \SmartDato\Brt\Requests\Pickup\Create\CreatePickupRequest::class => \Saloon\Http\Faking\MockResponse::fixture('pickups.create.sucess'),
