@@ -2,7 +2,6 @@
 
 namespace SmartDato\Brt;
 
-use SmartDato\Brt\Commands\BrtCommand;
 use Spatie\LaravelPackageTools\Package;
 use Spatie\LaravelPackageTools\PackageServiceProvider;
 
@@ -17,9 +16,6 @@ class BrtServiceProvider extends PackageServiceProvider
          */
         $package
             ->name('brt')
-            ->hasConfigFile()
-            ->hasViews()
-            ->hasMigration('create_brt_table')
-            ->hasCommand(BrtCommand::class);
+            ->hasConfigFile();
     }
 }
