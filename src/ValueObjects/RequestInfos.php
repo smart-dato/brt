@@ -10,7 +10,7 @@ class RequestInfos extends Data
     public function __construct(
         protected Carbon $collectionDate,
         protected ?string $crReOrderNr = null,
-        protected ?string $parcelCount = null,
+        protected ?int $parcelCount = null,
     ) {}
 
     public function build(): array

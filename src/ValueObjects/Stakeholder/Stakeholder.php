@@ -21,7 +21,7 @@ class Stakeholder extends Data
             'type' => $this->type->value,
             'contact' => $this->contact?->build(),
             'address' => $this->address?->build(),
-        ], fn ($value) => ($value !== null));
+        ], fn ($value) => ! is_null($value));
 
     }
 }

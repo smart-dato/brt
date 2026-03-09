@@ -49,7 +49,7 @@ class BrtSpecifics extends Data
             'commissioned' => $this->commissioned,
             'notes' => $this->notes,
             'parcelInfos' => $this->parcelInfos,
-            'openingHours' => array_map(fn ($openingHour) => $openingHour->build(), $this->openingHours),
+            'openingHours' => $this->openingHours ? array_map(fn ($openingHour) => $openingHour->build(), $this->openingHours) : null,
             'goodDescription' => $this->goodDescription,
             'palletCount' => $this->palletCount,
             'payerType' => $this->payerType?->value,

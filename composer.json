@@ -76,9 +76,7 @@
             "providers": [
                 "SmartDato\\Brt\\BrtServiceProvider"
             ],
-            "aliases": {
-                "Brt": "SmartDato\\Brt\\Facades\\Brt"
-            }
+            "aliases": {}
         }
     },
     "minimum-stability": "dev",

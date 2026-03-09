@@ -16,6 +16,6 @@ class Contact extends Data
         return array_filter([
             'description' => $this->description,
             'contactDetails' => $this->contactDetails->build(),
-        ], fn ($value) => ($value !== null));
+        ], fn ($value) => ! is_null($value));
     }
 }

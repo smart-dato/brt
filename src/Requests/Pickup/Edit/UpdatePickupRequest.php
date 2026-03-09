@@ -2,11 +2,15 @@
 
 namespace SmartDato\Brt\Requests\Pickup\Edit;
 
+use Saloon\Contracts\Body\HasBody;
 use Saloon\Enums\Method;
 use Saloon\Http\Request;
+use Saloon\Traits\Body\HasJsonBody;
 
-class UpdatePickupRequest extends Request
+class UpdatePickupRequest extends Request implements HasBody
 {
+    use HasJsonBody;
+
     /**
      * The HTTP method of the request
      */
@@ -20,7 +24,16 @@ class UpdatePickupRequest extends Request
         return "/api/geodata/v410/colreqs/{$this->id}";
     }
 
+    protected function defaultBody(): array
+    {
+        return $this->collectionRequest->build();
+    }
+
+    /**
+     * @param  \SmartDato\Brt\ValueObjects\CollectionRequest  $collectionRequest
+     */
     public function __construct(
-        protected readonly string $id
+        protected readonly string $id,
+        protected readonly \SmartDato\Brt\ValueObjects\CollectionRequest $collectionRequest,
     ) {}
 }

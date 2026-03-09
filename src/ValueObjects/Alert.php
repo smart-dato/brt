@@ -17,8 +17,8 @@ class Alert extends Data
     {
         return array_filter([
             'type' => $this->type->value,
-            'mail' => $this->phone,
-            'sms' => $this->email,
+            'mail' => $this->email,
+            'sms' => $this->phone,
         ], fn ($value) => ! is_null($value));
     }
 }
