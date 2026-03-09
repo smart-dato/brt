@@ -29,9 +29,6 @@ class UpdatePickupRequest extends Request implements HasBody
         return $this->collectionRequest->build();
     }
 
-    /**
-     * @param  \SmartDato\Brt\ValueObjects\CollectionRequest  $collectionRequest
-     */
     public function __construct(
         protected readonly string $id,
         protected readonly \SmartDato\Brt\ValueObjects\CollectionRequest $collectionRequest,
