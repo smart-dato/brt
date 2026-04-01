@@ -6,6 +6,7 @@ use Saloon\Contracts\Body\HasBody;
 use Saloon\Enums\Method;
 use Saloon\Http\Request;
 use Saloon\Traits\Body\HasJsonBody;
+use SmartDato\Brt\ValueObjects\CollectionRequest;
 
 class UpdatePickupRequest extends Request implements HasBody
 {
@@ -31,6 +32,6 @@ class UpdatePickupRequest extends Request implements HasBody
 
     public function __construct(
         protected readonly string $id,
-        protected readonly \SmartDato\Brt\ValueObjects\CollectionRequest $collectionRequest,
+        protected readonly CollectionRequest $collectionRequest,
     ) {}
 }

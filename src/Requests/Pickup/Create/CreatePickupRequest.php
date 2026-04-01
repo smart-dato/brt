@@ -6,6 +6,7 @@ use Saloon\Contracts\Body\HasBody;
 use Saloon\Enums\Method;
 use Saloon\Http\Request;
 use Saloon\Traits\Body\HasJsonBody;
+use SmartDato\Brt\ValueObjects\CollectionRequest;
 
 class CreatePickupRequest extends Request implements HasBody
 {
@@ -30,7 +31,7 @@ class CreatePickupRequest extends Request implements HasBody
     }
 
     /**
-     * @param  array<\SmartDato\Brt\ValueObjects\CollectionRequest>  $collectionRequests
+     * @param  array<CollectionRequest>  $collectionRequests
      */
     public function __construct(
         protected array $collectionRequests,
