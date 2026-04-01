@@ -1,13 +1,30 @@
 <?php
 
+use Saloon\Http\Faking\MockClient;
+use Saloon\Http\Faking\MockResponse;
+use SmartDato\Brt\BrtConnector;
+use SmartDato\Brt\Enums\PayerType;
+use SmartDato\Brt\Enums\Stakeholder\Type;
+use SmartDato\Brt\Requests\Pickup\Create\CreatePickupRequest;
+use SmartDato\Brt\Requests\Pickup\Search\SearchPickupRequest;
+use SmartDato\Brt\ValueObjects\BrtSpecifics;
+use SmartDato\Brt\ValueObjects\CollectionRequest;
+use SmartDato\Brt\ValueObjects\CustomerInfos;
+use SmartDato\Brt\ValueObjects\OpeningHour;
+use SmartDato\Brt\ValueObjects\RequestInfos;
+use SmartDato\Brt\ValueObjects\Stakeholder\Contact;
+use SmartDato\Brt\ValueObjects\Stakeholder\ContactDetails;
+use SmartDato\Brt\ValueObjects\Stakeholder\Customer;
+use SmartDato\Brt\ValueObjects\Stakeholder\Stakeholder;
+
 it('can search pickups', function () {
-    $connector = new \SmartDato\Brt\BrtConnector;
-    $connector->withMockClient(new \Saloon\Http\Faking\MockClient([
-        \SmartDato\Brt\Requests\Pickup\Search\SearchPickupRequest::class => \Saloon\Http\Faking\MockResponse::fixture('pickups/search/sucess'),
+    $connector = new BrtConnector;
+    $connector->withMockClient(new MockClient([
+        SearchPickupRequest::class => MockResponse::fixture('pickups/search/sucess'),
     ]));
 
     $response = $connector->send(
-        new \SmartDato\Brt\Requests\Pickup\Search\SearchPickupRequest(
+        new SearchPickupRequest(
             limit: 1
         )
     );
@@ -17,55 +34,55 @@ it('can search pickups', function () {
 });
 
 it('can create pickup', function () {
-    $connector = new \SmartDato\Brt\BrtConnector;
+    $connector = new BrtConnector;
 
-    $connector->withMockClient(new \Saloon\Http\Faking\MockClient([
-        \SmartDato\Brt\Requests\Pickup\Create\CreatePickupRequest::class => \Saloon\Http\Faking\MockResponse::fixture('pickups/create/sucess'),
+    $connector->withMockClient(new MockClient([
+        CreatePickupRequest::class => MockResponse::fixture('pickups/create/sucess'),
     ]));
 
     $response = $connector->send(
-        new \SmartDato\Brt\Requests\Pickup\Create\CreatePickupRequest([
-            new \SmartDato\Brt\ValueObjects\CollectionRequest(
-                requestInfos: new \SmartDato\Brt\ValueObjects\RequestInfos(
+        new CreatePickupRequest([
+            new CollectionRequest(
+                requestInfos: new RequestInfos(
                     collectionDate: now()->nextWeekday(),
                     parcelCount: 1
                 ),
-                customerInfos: new \SmartDato\Brt\ValueObjects\CustomerInfos(
+                customerInfos: new CustomerInfos(
                     custAccNumber: '0000000'
 
                 ),
                 stakeholders: [
-                    new \SmartDato\Brt\ValueObjects\Stakeholder\Stakeholder(
-                        type: \SmartDato\Brt\Enums\Stakeholder\Type::Requester,
-                        customerInfos: new \SmartDato\Brt\ValueObjects\Stakeholder\Customer(
+                    new Stakeholder(
+                        type: Type::Requester,
+                        customerInfos: new Customer(
                             custAccNumber: '0000000000'
                         ),
                     ),
-                    new \SmartDato\Brt\ValueObjects\Stakeholder\Stakeholder(
-                        type: \SmartDato\Brt\Enums\Stakeholder\Type::Sender,
-                        customerInfos: new \SmartDato\Brt\ValueObjects\Stakeholder\Customer(
+                    new Stakeholder(
+                        type: Type::Sender,
+                        customerInfos: new Customer(
                             custAccNumber: '0000000000'
                         ),
-                        contact: new \SmartDato\Brt\ValueObjects\Stakeholder\Contact(
-                            contactDetails: new \SmartDato\Brt\ValueObjects\Stakeholder\ContactDetails(
+                        contact: new Contact(
+                            contactDetails: new ContactDetails(
                                 phone: '0000000000',
                                 contactPerson: 'Foo Bar',
                             ),
                         ),
                     ),
                 ],
-                brtSpec: new \SmartDato\Brt\ValueObjects\BrtSpecifics(
+                brtSpec: new BrtSpecifics(
                     goodDescription: 'test',
-                    payerType: \SmartDato\Brt\Enums\PayerType::Ordering,
+                    payerType: PayerType::Ordering,
                     collectionTime: '11:00',
                     alerts: [],
                     weightKG: 2.3,
                     openingHours: [
-                        new \SmartDato\Brt\ValueObjects\OpeningHour(
+                        new OpeningHour(
                             from: '10:00',
                             to: '13:00',
                         ),
-                        new \SmartDato\Brt\ValueObjects\OpeningHour(
+                        new OpeningHour(
                             from: '15:00',
                             to: '17:00',
                         ),
