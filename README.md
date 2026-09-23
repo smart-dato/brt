@@ -2,7 +2,7 @@
 
 [![Latest Version on Packagist](https://img.shields.io/packagist/v/smart-dato/brt.svg?style=flat-square)](https://packagist.org/packages/smart-dato/brt)
 [![GitHub Tests Action Status](https://img.shields.io/github/actions/workflow/status/smart-dato/brt/run-tests.yml?branch=main&label=tests&style=flat-square)](https://github.com/smart-dato/brt/actions?query=workflow%3Arun-tests+branch%3Amain)
-[![GitHub Code Style Action Status](https://img.shields.io/github/actions/workflow/status/smart-dato/brt/fix-php-code-style-issues.yml?branch=main&label=code%20style&style=flat-square)](https://github.com/smart-dato/brt/actions?query=workflow%3A"Fix+PHP+code+style+issues"+branch%3Amain)
+[![GitHub Code Style Action Status](https://img.shields.io/github/actions/workflow/status/smart-dato/brt/code-style.yml?branch=main&label=code%20style&style=flat-square)](https://github.com/smart-dato/brt/actions?query=workflow%3A%22Code+style%22+branch%3Amain)
 [![Total Downloads](https://img.shields.io/packagist/dt/smart-dato/brt.svg?style=flat-square)](https://packagist.org/packages/smart-dato/brt)
 
 A Laravel package for integrating with the [BRT (Bartolini)](https://www.brt.it/) courier API, built on [Saloon](https://docs.saloon.dev/).
@@ -169,10 +169,6 @@ composer test
 ## Changelog
 
 Please see [CHANGELOG](CHANGELOG.md) for more information on what has changed recently.
-
-## Contributing
-
-Please see [CONTRIBUTING](CONTRIBUTING.md) for details.
 
 ## Security Vulnerabilities
 
